@@ -55,7 +55,12 @@ public class DES {
             //ALGORITMO DES 
             //Modo ECB (Electronic Code Book) RELLENO PKCS5
             
+            System.out.println("2.- Cifrar con DES y el archivo: "+args[0]+", dejar el resultado en: "+args[0]+" .cifrado");
             
+            //Instancia          
+            Cipher cifrado=Cipher.getInstance("DES/ECB/PKCS5Padding");
+            
+            cifrado.init(Cipher.ENCRYPT_MODE, clave);
         }
     }
 
