@@ -182,5 +182,6 @@ function revision(mess,desp){
 
     if(desp.length>mess.length){
         alert("La clave no puede ser mayor al mensaje");
+        aceptado=false;
     }
 }
