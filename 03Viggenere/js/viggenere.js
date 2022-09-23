@@ -126,7 +126,61 @@ $(document).ready(function(){
 
         }else{
             //No se cumple
-            alert("No se cumplió el cifrado");
+            alert("No se cumplió el descifrado");
         }
     });
 })
+
+//FUNCION DE CIFRADO
+function cifrado(posm,posk){
+    //Aplicamos la fórmula
+    let y=(posm+posk)%27;
+    return y
+}
+
+//FUNCION DE DESCIFRADO
+function descifrar(posm,posk){
+    //Vamos a obtener una variable val
+    let val=0;
+    if((posm-posk)>=0){
+        //La posición existe asi que todo bien
+        val=(posm+posk)%27;
+    }else{
+        //Compensamos con el +27 que se corran los caracteres
+        val=(posm-posk+27)
+    }return val;
+}
+
+//FUNCION DE LA POSICION
+
+function getPosicion(letra){
+    //indexOf retorna el primer índice en el que se puede encontrar un elemento dado en el array, ó retorna -1 si el elemento no esta presente
+    let posicion=abc.indexOf(letra);
+    return posicion;
+}
+
+//FUNCION DE LA REVISIÓN
+
+function revision(mess,desp){
+    //Primero hay que validar la entrada de los datos a partir de una expresión regular
+    //El ? es un evaluador
+
+    var expresion= /^([a-zñ?]+([]*[a-zñ?]?['-]?[a-zñ?]+)*)$/;
+    
+    var aceptado=true;
+
+    //Empiezo a evaluar la expresión
+    if(!expresion.test(mess)){
+        alert("El texto que ingresó no ha sido aceptado, ingrese solo minúsculas y evite números y símbolos");
+        aceptado=false;
+    }
+    
+    if(!expresion.test(desp)){
+        alert("La clave ingresada es incorrecta, no cumple con las normas de solo usar minúsculas sin números ni símbolos");
+        aceptado=false;
+    }
+
+    if(desp.length>mess.length){
+        alert("La clave no puede ser mayor al mensaje");
+    }
+}
