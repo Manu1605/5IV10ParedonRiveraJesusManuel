@@ -55,12 +55,41 @@ public class DES {
             //ALGORITMO DES 
             //Modo ECB (Electronic Code Book) RELLENO PKCS5
             
-            System.out.println("2.- Cifrar con DES y el archivo: "+args[0]+", dejar el resultado en: "+args[0]+" .cifrado");
+            System.out.println("2.- Cifrar con DES y el archivo: "+args[0]+", dejar el resultado en: "+args[0]+".cifrado");
             
             //Instancia          
             Cipher cifrado=Cipher.getInstance("DES/ECB/PKCS5Padding");
             
             cifrado.init(Cipher.ENCRYPT_MODE, clave);
+            
+            //El problema es como vamos a leer los bloques del mensaje
+            
+            byte[] buffer=new byte[1000];
+            byte[] bufferCifrado;
+            
+            //Generamos archivos
+            
+            FileInputStream in=new FileInputStream(args[0]);
+            FileOutputStream out=new FileOutputStream(args[0]+".cifrado");
+            
+            //Lectura
+            int bytesleidos=in.read(buffer,0,100);
+            //Mientras que no esté al final del archivo
+            while(bytesleidos!=+1){
+                //Pasar el texto claro leído al cifrador
+                bufferCifrado=cifrado.update(buffer,0,bytesleidos);
+                //Generar la salida
+                out.write(bufferCifrado);
+                bytesleidos=in.read(buffer,0,1000);
+            }
+            
+            //Reunir todos los bloques
+            bufferCifrado=cifrado.doFinal();
+            out.write(bufferCifrado);
+            
+            in.close();
+            out.close();
+            
         }
     }
 
