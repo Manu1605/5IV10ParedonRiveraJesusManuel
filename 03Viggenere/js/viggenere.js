@@ -31,7 +31,7 @@ $(document).ready(function(){
 
         //Para aplicar el algoritmos debemos crear una función que se encargue de revisar las condiciones del mismo
 
-        if(revision(mess.key)){
+        if(revision(mess,key)){
             //Vamos primero por aplicar y obtener la poscion de la longitud del mensaje y emparejarlo contra la llave
 
             for(var i=0;i<mess.length;i++){
@@ -63,7 +63,7 @@ $(document).ready(function(){
             }
 
             //Imprimir el resultado
-            document.getElementById("rs").value=newMess;
+            document.getElementById("rs").innerHTML=newMess;
 
         }else{
             //No se cumple
@@ -90,7 +90,7 @@ $(document).ready(function(){
 
         //Para aplicar el algoritmos debemos crear una función que se encargue de revisar las condiciones del mismo
 
-        if(revision(mess.key)){
+        if(revision(mess,key)){
             //Vamos primero por aplicar y obtener la poscion de la longitud del mensaje y emparejarlo contra la llave
 
             for(var i=0;i<mess.length;i++){
@@ -115,14 +115,15 @@ $(document).ready(function(){
                 let posk=getPosicion(charr);
 
                 //Tenemos que ejecutar el descifrado
-                let newValores=descifrar(posm,posk);
+                let newValores=descifrado(posm,posk);
 
                 //Se está almacenando el resultado del cifrado
                 newMess+=abc[newValores];
             }
 
             //Imprimir el resultado
-            document.getElementById("rs").value=newMess;
+            document.getElementById("rs").innerHTML=newMess;
+            console.log(newMess);
 
         }else{
             //No se cumple
@@ -139,7 +140,7 @@ function cifrado(posm,posk){
 }
 
 //FUNCION DE DESCIFRADO
-function descifrar(posm,posk){
+function descifrado(posm,posk){
     //Vamos a obtener una variable val
     let val=0;
     if((posm-posk)>=0){
@@ -147,7 +148,7 @@ function descifrar(posm,posk){
         val=(posm+posk)%27;
     }else{
         //Compensamos con el +27 que se corran los caracteres
-        val=(posm-posk+27)
+        val=(posm-posk+27)%27
     }return val;
 }
 
@@ -175,13 +176,15 @@ function revision(mess,desp){
         aceptado=false;
     }
     
-    if(!expresion.test(desp)){
+    if(expresion.test(desp)){
         alert("La clave ingresada es incorrecta, no cumple con las normas de solo usar minúsculas sin números ni símbolos");
         aceptado=false;
+        
     }
 
     if(desp.length>mess.length){
         alert("La clave no puede ser mayor al mensaje");
         aceptado=false;
     }
+    return aceptado
 }
