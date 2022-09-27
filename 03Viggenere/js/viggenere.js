@@ -145,7 +145,7 @@ function descifrado(posm,posk){
     let val=0;
     if((posm-posk)>=0){
         //La posición existe asi que todo bien
-        val=(posm+posk)%27;
+        val=(posm-posk)%27;
     }else{
         //Compensamos con el +27 que se corran los caracteres
         val=(posm-posk+27)%27
@@ -176,7 +176,7 @@ function revision(mess,desp){
         aceptado=false;
     }
     
-    if(expresion.test(desp)){
+    if(!expresion.test(desp)){
         alert("La clave ingresada es incorrecta, no cumple con las normas de solo usar minúsculas sin números ni símbolos");
         aceptado=false;
         
