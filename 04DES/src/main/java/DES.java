@@ -28,6 +28,7 @@ public class DES {
         if(args.length!=1){
             mensajeAyuda();
             System.exit(1);
+		}
             /*Lo primero que tenemos que hacer es cargar una instancia del proveedor del tipo de cifrado, para
             eso esta la parte de las librerias*/
             
@@ -114,7 +115,7 @@ public class DES {
 			in.close();
             out.close();	
             
-        }
+        
     }
 
     private static void mostrarBytes(byte[] buffer) {
