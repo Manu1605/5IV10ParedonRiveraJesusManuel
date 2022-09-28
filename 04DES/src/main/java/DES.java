@@ -89,15 +89,42 @@ public class DES {
             
             in.close();
             out.close();
+			
+			//Vamos a decifrar
+			System.out.println("B.-> Descifrar con DES el archivo"+args[0]+".cifrado"+", vamos a ver el resultado"+" en el archivo: "+args[0]+".descifrado");
+			//Empezamos con el modo en descifrar
+			cifrado.init(Cipher.DECRYPT_MODE,clave);
+			
+			byte[] bufferPlano;
+			in=new FileInputStream(args[0]+".cifrado");
+			out=new FileOutputStream(args[0]+".descifrado");
+			
+			//Damos lectura de cada elemento
+			bytesleidos=in.read(buffer,0,1000);
+			//Mientras no este al final del archivo que continue
+			while(bytesleidos!=-1){
+				//Pasamos el texto plano al cifrado
+				bufferPlano=cifrado.update(buffer,0,bytesleidos);
+				//Generamos la salida
+				out.write(bufferPlano);
+				bytesleidos=in.read(buffer,0,1000);
+			}
+			//Vamos a reunir los bloques
+			bufferPlano=cifrado.doFinal();
+			in.close();
+            out.close();	
             
         }
     }
 
-    private static void mostrarBytes(byte[] encoded) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void mostrarBytes(byte[] buffer) {
+        System.out.write(buffer,0,buffer.length);
     }
 
     private static void mensajeAyuda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Ejemplo de un DES para un archivo");
+		System.out.println("Cuidado con la llave, solo puedes ser de 8 caracteres");
+		System.out.println("Compruebe que está cargado el archivo");
+		System.out.println("ñam ñam n-n/");
     }
 }
