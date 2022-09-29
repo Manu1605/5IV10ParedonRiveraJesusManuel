@@ -16,37 +16,46 @@
 
     <div><h1>Ejercicio de Cifrados</h1></div>
 
-    <br><p><h2>Ingresa el tipo de cifrado que deseas</h2></p>
+    <br><p><h2>Ingresa el tipo de cifrado que deseas</h2></p><br>
     
     <div id="buttoncesar">
-        <input type="button" id="cesar" value="Cesar" onclick="mostrarCesar();">
+        <button id="cesar" class="btn btncesar" onclick="mostrarCesar();">Cesar</button>
     </div>
     <div id="buttonvigge">
-        <input type="button" id="vigge" value="Viggenere" onclick="mostrarVigge();">
+        <button id="vigge" class="btn btnvigge" onclick="mostrarVigge();">Viggenere</button>
     </div>
         
 
     <div id="datoscesar">
-        <input type="number" id="despcesar" placeholder="Ingresa la posición de desplazamiento">
-        <textarea id="cadena" placeholder="Ingresa el mensaje"></textarea><br>
+        <span>Deszplazamiento</span>
+        <input type="number" style="width : 250px;" id="despcesar" placeholder="Ingresa la posición">
+        <span>Mensaje</span>
+        <input id="cadena" placeholder="Ingresa el mensaje"></input>
+        <br><br>
+        <div id="resultado"></div>
+        <br>
         <p><input type="button" value="Cifrar" onclick="cifrar()">
         <input type="button" value="Descifrar" onclick="descifrar()"></p>
-        <div id="resultado"></div>
-
-        <a href="" onclick="ocultarCesar();">Ocultar cifrado cesar</a> 
         <input type="button" value="Borrar datos" onclick="borrardatoscesar();">
+        <br><br>
+        <a href="" onclick="ocultarCesar();">Ocultar cifrado cesar</a> 
+        
     </div>
     
 
     <div id="datosvigge">
-        <textarea id="llave" placeholder="Ingresa la llave"></textarea>
-        <textarea id="mess" placeholder="Ingresa el mensaje"></textarea>
-        <p><input id="ci" type="button" value="Cifrar">
-        <input id="de" type="button" value="Descifrar"></p>  
+        <span>Llave</span>
+        <input id="llave" placeholder="Ingresa la llave"></input>
+        <span>Mensaje</span>
+        <input id="mess" placeholder="Ingresa el mensaje"></input><br><br>
         <div id="rs"></div>
-        
+        <br>
+        <p><input id="ci" type="button" value="Cifrar">
+        <input id="de" type="button" value="Descifrar"></p>
+        <input type="button" value="Borrar datos" onclick="borrardatosvigge();"><br>  
+        <br>
         <a href="" onclick="ocultarVigge();">Ocultar cifrado Viggenere</a>
-        <input type="button" value="Borrar datos" onclick="borrardatosvigge();">   
+
     </div>
 
     <script type="text/javascript">
